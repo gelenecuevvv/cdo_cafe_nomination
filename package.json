@@ -1,0 +1,55 @@
+{
+  "name": "cdo-cafe-nomination",
+  "version": "1.0.0",
+  "description": "CDO Café Nomination & Map Explorer - A community-driven web app for discovering cafés in Cagayan de Oro",
+  "main": "src/index.tsx",
+  "scripts": {
+    "start": "php -S localhost:8000 -t backend/public",
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "setup": "echo 'Please import the database schema from database/cdo_cafe_nomination.sql'",
+    "test": "echo 'No tests specified'"
+  },
+  "keywords": [
+    "cafe",
+    "nomination",
+    "map",
+    "cagayan-de-oro",
+    "philippines",
+    "community",
+    "google-maps",
+    "react",
+    "typescript"
+  ],
+  "author": "Marie Angelene C. Cuevo",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/cdo-cafe-nomination.git"
+  },
+  "engines": {
+    "php": ">=7.4"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.8.0",
+    "@types/google.maps": "^3.50.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
+    "@typescript-eslint/eslint-plugin": "^5.54.0",
+    "@typescript-eslint/parser": "^5.54.0",
+    "@vitejs/plugin-react": "^3.1.0",
+    "autoprefixer": "^10.4.14",
+    "eslint": "^8.35.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.3.4",
+    "postcss": "^8.4.21",
+    "tailwindcss": "^3.2.7",
+    "typescript": "^4.9.3",
+    "vite": "^4.1.0"
+  }
+}

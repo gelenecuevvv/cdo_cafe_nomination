@@ -1,0 +1,46 @@
+/* ProgressIndicator.module.css */
+.progressContainer {
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.progressHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.progressTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--cafe-dark);
+}
+
+.progressCount {
+  color: var(--cafe-gold);
+  font-weight: 600;
+}
+
+.progressBar {
+  width: 100%;
+  height: 0.5rem;
+  background: #E5E7EB;
+  border-radius: 0.25rem;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--cafe-brown), var(--cafe-gold));
+  transition: width 0.3s ease;
+}
+
+.progressDescription {
+  font-size: 0.875rem;
+  color: var(--cafe-brown);
+  margin-top: 0.5rem;
+}

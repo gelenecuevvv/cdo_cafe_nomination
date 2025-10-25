@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global CSS Variables */
+:root {
+  --cafe-beige: #F5F1EB;
+  --cafe-brown: #8B4513;
+  --cafe-cream: #FFF8DC;
+  --cafe-dark: #3C2415;
+  --cafe-gold: #DAA520;
+  --cafe-light: #FAF7F0;
+}
+
+/* Global Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--cafe-light);
+  color: var(--cafe-dark);
+  line-height: 1.6;
+}
+
+/* Global Shared Components - Used across multiple components */
+
+/* Shared Button Styles */
+.btn-cafe {
+  @apply bg-gradient-to-r from-cafe-brown to-cafe-gold text-white border-none px-6 py-3 rounded-lg font-medium transition-all duration-300 cursor-pointer;
+}
+
+.btn-cafe:hover {
+  @apply transform -translate-y-0.5 shadow-lg;
+  box-shadow: 0 8px 25px rgba(139, 69, 19, 0.3);
+}
+
+.btn-cafe-outline {
+  @apply bg-transparent text-cafe-brown border-2 border-cafe-brown px-5 py-2.5 rounded-lg font-medium transition-all duration-300 cursor-pointer;
+}
+
+.btn-cafe-outline:hover {
+  @apply bg-cafe-brown text-white;
+}
+
+.btn-cafe-outline.active {
+  @apply bg-cafe-brown text-white;
+}
+
+/* Shared Card Styles */
+.cafe-card {
+  @apply bg-white rounded-xl shadow-lg transition-all duration-300 overflow-hidden;
+}
+
+.cafe-card:hover {
+  @apply transform -translate-y-1;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Shared Toast Notifications */
+.toast {
+  @apply fixed top-5 right-5 bg-white border-l-4 border-cafe-gold px-5 py-4 rounded-lg shadow-lg z-50 transform translate-x-96 transition-transform duration-300;
+}
+
+.toast.show {
+  @apply translate-x-0;
+}
+
+.toast.success {
+  @apply border-l-green-500;
+}
+
+.toast.error {
+  @apply border-l-red-500;
+}
+
+/* Shared Leaderboard Styles */
+.leaderboard-item {
+  @apply flex items-center p-4 bg-white rounded-lg mb-3 shadow-md transition-all duration-300;
+}
+
+.leaderboard-item:hover {
+  @apply transform translate-x-1;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.leaderboard-rank {
+  @apply bg-cafe-gold text-white w-10 h-10 rounded-full flex items-center justify-center font-semibold mr-4;
+}
+
+/* Shared Progress Bar */
+.progress-bar {
+  @apply w-full h-2 bg-gray-200 rounded overflow-hidden;
+}
+
+.progress-fill {
+  @apply h-full bg-gradient-to-r from-cafe-brown to-cafe-gold transition-all duration-300;
+}
+
+/* Shared Loading Spinner */
+.spinner {
+  @apply w-10 h-10 border-4 border-gray-200 border-t-cafe-brown rounded-full animate-spin;
+}
+
+/* Shared Tab Styles */
+.tab-button {
+  @apply px-6 py-3 text-cafe-brown border-b-2 border-transparent transition-all duration-300;
+}
+
+.tab-button.active {
+  @apply border-cafe-brown text-cafe-dark font-semibold;
+}
+
+.tab-content {
+  @apply p-6;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  @apply w-2;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-cafe-light;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-cafe-brown rounded;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-cafe-dark;
+}
+
+/* Global Responsive Design */
+@media (max-width: 768px) {
+  .leaderboard-item {
+    @apply flex-col text-center;
+  }
+  
+  .leaderboard-rank {
+    @apply mr-0 mb-3;
+  }
+}
+
