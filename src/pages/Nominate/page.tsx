@@ -12,7 +12,7 @@ const Nominate: React.FC = () => {
   useEffect(() => {
     const loadRecentNominations = async () => {
       try {
-        const response = await getNominations('approved');
+        const response = await getNominations();
         setRecentNominations(response.nominations.slice(0, 6));
       } catch (error) {
         console.error('Error loading recent nominations:', error);

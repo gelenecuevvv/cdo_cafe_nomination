@@ -12,8 +12,9 @@ class Database {
         $this->conn = null;
         
         try {
+            // Try socket connection first (for XAMPP)
             $this->conn = new PDO(
-                "mysql:host=" . $this->host . ";dbname=" . $this->db_name,
+                "mysql:unix_socket=/Applications/XAMPP/xamppfiles/var/mysql/mysql.sock;dbname=" . $this->db_name,
                 $this->username,
                 $this->password
             );

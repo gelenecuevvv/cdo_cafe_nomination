@@ -92,11 +92,12 @@ function getUserNominationCount($userId) {
     return $result['count'];
 }
 
-// Check if café already exists
+// Check if café already exists (by name only, not coordinates)
 function cafeExists($cafeName, $latitude, $longitude) {
     $db = getDB();
-    $stmt = $db->prepare("SELECT cafe_id FROM cafes WHERE cafe_name = ? AND latitude = ? AND longitude = ?");
-    $stmt->execute([$cafeName, $latitude, $longitude]);
+    // Only check by name to allow multiple locations for same café
+    $stmt = $db->prepare("SELECT cafe_id FROM cafes WHERE cafe_name = ?");
+    $stmt->execute([$cafeName]);
     return $stmt->fetch() !== false;
 }
 

@@ -1,13 +1,14 @@
 import { ValidationErrors, FormData } from '../types';
 
-// Generate a unique user ID
-export const getUserId = (): string => {
+// Generate a unique user ID (use numeric ID for database compatibility)
+export const getUserId = (): number => {
   let userId = localStorage.getItem('user_id');
   if (!userId) {
-    userId = 'user_' + Math.random().toString(36).substr(2, 9);
+    // Use the demo user ID (1) that exists in the database
+    userId = '1';
     localStorage.setItem('user_id', userId);
   }
-  return userId;
+  return parseInt(userId);
 };
 
 // Format date for display

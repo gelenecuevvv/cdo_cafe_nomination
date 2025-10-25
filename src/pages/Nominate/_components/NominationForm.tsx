@@ -48,7 +48,16 @@ const NominationForm: React.FC = () => {
     setLoading(true);
     
     try {
-      const response = await submitNomination(formData);
+      // Ensure user_id is always set
+      const userId = getUserId();
+      console.log('🔍 getUserId() returned:', userId);
+      
+      const submissionData = {
+        ...formData,
+        user_id: userId
+      };
+      console.log('📝 Form data being submitted:', submissionData);
+      const response = await submitNomination(submissionData);
       
       if (response.success) {
         showToast('Nomination submitted successfully! Thank you for contributing to our community.', 'success');

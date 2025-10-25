@@ -36,27 +36,47 @@ try {
 
 function getNominations() {
     $db = getDB();
-    $status = isset($_GET['status']) ? $_GET['status'] : 'approved';
+    $status = isset($_GET['status']) ? $_GET['status'] : null;
     
-    $stmt = $db->prepare("
-        SELECT n.*, c.cafe_name, c.address, c.latitude, c.longitude, c.facebook_link, c.image_path,
-               u.name as user_name
-        FROM nominations n
-        JOIN cafes c ON n.cafe_id = c.cafe_id
-        LEFT JOIN users u ON n.user_id = u.user_id
-        WHERE n.status = ?
-        ORDER BY n.created_at DESC
-    ");
-    $stmt->execute([$status]);
+    if ($status) {
+        // Filter by specific status
+        $stmt = $db->prepare("
+            SELECT n.*, c.cafe_name, c.address, c.latitude, c.longitude, c.facebook_link, c.image_path,
+                   u.name as user_name
+            FROM nominations n
+            JOIN cafes c ON n.cafe_id = c.cafe_id
+            LEFT JOIN users u ON n.user_id = u.user_id
+            WHERE n.status = ?
+            ORDER BY n.created_at DESC
+        ");
+        $stmt->execute([$status]);
+    } else {
+        // Get all nominations
+        $stmt = $db->prepare("
+            SELECT n.*, c.cafe_name, c.address, c.latitude, c.longitude, c.facebook_link, c.image_path,
+                   u.name as user_name
+            FROM nominations n
+            JOIN cafes c ON n.cafe_id = c.cafe_id
+            LEFT JOIN users u ON n.user_id = u.user_id
+            ORDER BY n.created_at DESC
+        ");
+        $stmt->execute();
+    }
+    
     $nominations = $stmt->fetchAll();
-    
     sendJsonResponse(['nominations' => $nominations]);
 }
 
 function createNomination() {
     $input = json_decode(file_get_contents('php://input'), true);
     
+    // Debug: Log what we received
+    error_log('📝 Received nomination data: ' . json_encode($input));
+    
     if (!isset($input['user_id']) || !isset($input['cafe_id']) || !isset($input['reason'])) {
+        error_log('❌ Missing fields - user_id: ' . (isset($input['user_id']) ? 'OK' : 'MISSING') . 
+                  ', cafe_id: ' . (isset($input['cafe_id']) ? 'OK' : 'MISSING') . 
+                  ', reason: ' . (isset($input['reason']) ? 'OK' : 'MISSING'));
         sendJsonResponse(['error' => 'Missing required fields'], 400);
     }
     
